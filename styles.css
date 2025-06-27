@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #ffe6f0;
+  background-color: #ffe9f3; /* rosa pastel */
   color: #4a4a4a;
   display: flex;
   justify-content: center;
@@ -18,111 +18,102 @@ body {
 h1 {
   font-size: 2.5rem;
   color: #d6336c;
-  animation: fadeIn 1s ease-in-out;
 }
 
 .mensaje {
   font-size: 1.3rem;
   margin: 1rem 0;
-  animation: fadeIn 1.5s ease-in-out;
 }
 
 .ramo {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
   margin: 2rem 0;
-  animation: fadeInUp 2s ease;
 }
 
-/* 🌼 Flor completa con pétalos, centro, tallo y hojas */
-.flor-completa {
+.flor {
   position: relative;
   width: 60px;
   height: 60px;
-  margin-bottom: 80px;
-  animation: float 3s ease-in-out infinite;
+  margin-bottom: 60px;
 }
 
-.flor-completa::before {
-  content: '';
+.flor::before,
+.flor::after {
+  content: "";
   position: absolute;
-  top: 20px;
-  left: 20px;
   width: 20px;
   height: 20px;
-  background-color: #ffd700;
+  background-color: #ff7eb9; /* pétalos rosados */
   border-radius: 50%;
-  z-index: 2;
-}
-
-/* pétalos */
-.flor-completa div,
-.flor-completa::after {
-  content: '';
-  position: absolute;
-  background-color: #ff69b4;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.flor-completa::after {
   top: 20px;
   left: 20px;
   box-shadow:
-    -20px 0 #ff69b4,
-    20px 0 #ff69b4,
-    0 -20px #ff69b4,
-    0 20px #ff69b4,
-    -14px -14px #ff85a2,
-    14px -14px #ff85a2,
-    -14px 14px #ff85a2,
-    14px 14px #ff85a2;
+    -20px 0 #ff7eb9,
+    20px 0 #ff7eb9,
+    0 -20px #ff7eb9,
+    0 20px #ff7eb9;
+  z-index: 1;
 }
 
-/* tallo */
-.flor-completa::marker {
+.flor::after {
+  width: 18px;
+  height: 18px;
+  background-color: #ffd700; /* centro de la flor */
+  border-radius: 50%;
+  top: 21px;
+  left: 21px;
+  box-shadow: none;
+  z-index: 2;
+}
+
+/* Tallo */
+.flor::marker {
   display: none;
 }
 
-.flor-completa::after + .tallo {
-  content: '';
+.flor .tallo {
   position: absolute;
-  top: 60px;
+  width: 4px;
+  height: 50px;
+  background-color: #228b22;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 6px;
-  height: 60px;
-  background-color: #228B22;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
-/* hojas */
-.flor-completa::after + .tallo::before,
-.flor-completa::after + .tallo::after {
-  content: '';
+/* Hojas opcionales */
+.flor .hoja {
   position: absolute;
-  top: 20px;
-  width: 20px;
-  height: 10px;
-  background-color: #32CD32;
+  width: 15px;
+  height: 8px;
+  background-color: #2ecc71;
   border-radius: 50%;
+  bottom: -30px;
+  transform: rotate(45deg);
+  left: -10px;
+}
+.flor .hoja.derecha {
+  left: auto;
+  right: -10px;
+  transform: rotate(-45deg);
 }
 
-.flor-completa::after + .tallo::before {
-  left: -18px;
-  transform: rotate(-20deg);
+.flor::after + .tallo, .flor .tallo {
+  position: absolute;
+  width: 4px;
+  height: 50px;
+  background-color: #228b22;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
-.flor-completa::after + .tallo::after {
-  right: -18px;
-  transform: rotate(20deg);
-}
-
-/* botón sorpresa */
+/* Mensaje botón */
 .reveal-btn {
   padding: 0.7rem 1.5rem;
   background-color: #d6336c;
@@ -139,7 +130,7 @@ h1 {
   background-color: #ad2856;
 }
 
-/* mensaje oculto */
+/* Mensaje oculto */
 .mensaje-secreto {
   max-height: 0;
   overflow: hidden;
@@ -159,23 +150,6 @@ h1 {
   font-size: 1rem;
   color: #6a4c93;
   margin-top: 2rem;
-  animation: fadeIn 2s ease-in;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
 }
 
 @media (max-width: 600px) {
