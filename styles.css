@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #ffe9f3; /* rosa pastel */
+  background: #fff0f6;
   color: #4a4a4a;
   display: flex;
   justify-content: center;
@@ -12,108 +12,93 @@ body {
 
 .container {
   padding: 2rem;
-  max-width: 700px;
+  max-width: 600px;
 }
 
 h1 {
   font-size: 2.5rem;
   color: #d6336c;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .mensaje {
   font-size: 1.3rem;
   margin: 1rem 0;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .ramo {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
   margin: 2rem 0;
+  animation: fadeInUp 2s ease;
 }
 
 .flor {
   position: relative;
   width: 60px;
   height: 60px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  animation: float 3s ease-in-out infinite;
 }
 
 .flor::before,
 .flor::after {
-  content: "";
+  content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff7eb9; /* pétalos rosados */
   border-radius: 50%;
-  top: 20px;
-  left: 20px;
-  box-shadow:
-    -20px 0 #ff7eb9,
-    20px 0 #ff7eb9,
-    0 -20px #ff7eb9,
-    0 20px #ff7eb9;
-  z-index: 1;
+  background-color: #ff69b4;
+  width: 30px;
+  height: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.flor::before {
+  top: 0;
+  left: 15px;
+  box-shadow: 
+    -15px 15px 0 #ff69b4,
+    15px 15px 0 #ff69b4,
+    0 30px 0 #ff69b4;
 }
 
 .flor::after {
-  width: 18px;
-  height: 18px;
-  background-color: #ffd700; /* centro de la flor */
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: #ffd700;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
   border-radius: 50%;
-  top: 21px;
-  left: 21px;
-  box-shadow: none;
-  z-index: 2;
 }
 
-/* Tallo */
-.flor::marker {
-  display: none;
+.flor:hover::before {
+  background-color: #ff85a2;
+  box-shadow: 
+    -15px 15px 0 #ff85a2,
+    15px 15px 0 #ff85a2,
+    0 30px 0 #ff85a2;
 }
 
+.flor:hover::after {
+  background-color: #ffa500;
+}
+
+.flor::after + .tallo,
 .flor .tallo {
-  position: absolute;
-  width: 4px;
+  width: 6px;
   height: 50px;
-  background-color: #228b22;
+  background-color: #228B22;
+  position: absolute;
   bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-/* Hojas opcionales */
-.flor .hoja {
-  position: absolute;
-  width: 15px;
-  height: 8px;
-  background-color: #2ecc71;
-  border-radius: 50%;
-  bottom: -30px;
-  transform: rotate(45deg);
-  left: -10px;
-}
-.flor .hoja.derecha {
-  left: auto;
-  right: -10px;
-  transform: rotate(-45deg);
-}
-
-.flor::after + .tallo, .flor .tallo {
-  position: absolute;
-  width: 4px;
-  height: 50px;
-  background-color: #228b22;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-/* Mensaje botón */
 .reveal-btn {
   padding: 0.7rem 1.5rem;
   background-color: #d6336c;
@@ -130,7 +115,6 @@ h1 {
   background-color: #ad2856;
 }
 
-/* Mensaje oculto */
 .mensaje-secreto {
   max-height: 0;
   overflow: hidden;
@@ -150,6 +134,29 @@ h1 {
   font-size: 1rem;
   color: #6a4c93;
   margin-top: 2rem;
+  animation: fadeIn 2s ease-in;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 @media (max-width: 600px) {
